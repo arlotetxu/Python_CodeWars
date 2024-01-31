@@ -31,33 +31,27 @@ Negative numbers and duplicate numbers can and will appear.
 NOTE: There will also be lists tested of lengths upwards of 10,000,000 elements.
 Be sure your code doesn't time out.
 '''
-# The following code return the right result but gives a timeout error
-# def sum_pairs(arr, sum):
-# 	ret = []
-# 	arr_len= len(arr)
-# 	i = 0
-# 	while i < arr_len:
-# 		j = i + 1
-# 		while j < arr_len:
-# 			if (arr[i] + arr[j] == sum):
-# 				ret.clear()
-# 				ret.append(arr[i])
-# 				ret.append(arr[j])
-# 				arr_len = j
-# 			j += 1
-# 		i += 1
-# 	if not ret:
-# 		return None
-# 	else:
-# 		print(ret)
-# 		return ret
 
+from icecream import ic
+from itertools import product
 def sum_pairs(lst, s):
-    cache = set()
+    to_sum = set()
     for i in lst:
-        if s - i in cache:
+        if s - i in to_sum:
             return [s - i, i]
-        cache.add(i)
+        to_sum.add(i)
 
-ret = sum_pairs([1, 4, 8, 4, 7, 3, 15],         8)
-print(f"Final: {ret}")
+def sum_pairs2(lst, s):
+    to_sum = set()
+    for i in lst:
+        for j in to_sum:
+            if i + j == s:
+                return [j, i]
+        to_sum.add(i)
+    return None
+
+
+ic(sum_pairs([10, 5, 2, 3, 7, 5],         10))
+ic(sum_pairs2([10, 5, 2, 3, 7, 5],         10))
+ic(sum_pairs([4, 3, 2, 3, 4],         22))
+ic(sum_pairs2([4, 3, 2, 3, 4],         22))
