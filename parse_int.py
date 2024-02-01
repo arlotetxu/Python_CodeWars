@@ -34,11 +34,15 @@ def parse_int(string: str):
 		elif char == 'hundred':
 			numb[-1] *= 100
 		elif char == 'thousand':
-			numb[-1] *= 1000
+			numb = [x * 1000 for x in numb]
 		elif char == 'million':
-			numb[-1] *= 1000000
+			numb = [x * 1000000 for x in numb]
 	return sum(numb)
 
-ic(parse_int('five million one hundred thousand three-hundred and twenty-one'))
-ic(parse_int('two hundred forty-six'))
-ic(parse_int("twenty"))
+# ic(parse_int('five million one hundred thousand three-hundred and twenty-one'))
+# ic(parse_int('two hundred forty-six'))
+# ic(parse_int("twenty"))
+# ic(parse_int('zero'))
+# ic(parse_int('fourteen thousand seven-hundred and twenty-two'))
+ic(parse_int('forty five thousand one hundred and thirty six'))
+#5176 should equal 45136
